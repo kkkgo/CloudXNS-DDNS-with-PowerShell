@@ -1,6 +1,6 @@
 #CloudXNS-DDNS with PowerShell
-#Github：https://github.com/lixuy/CloudXNS-DDNS-with-PowerShell
-#More： https://03k.org/cloudxns-ddns-with-powershell.html ‎
+#Github: https://github.com/lixuy/CloudXNS-DDNS-with-PowerShell
+#More: https://03k.org/cloudxns-ddns-with-powershell.html ‎
 $API_KEY="abcdefghijklmnopqrstuvwxyz1234567"
 $SECRET_KEY="abcdefghijk12345"
 #[Required]Please fill in your API KEY and SECRET KEY.
@@ -70,6 +70,6 @@ $SKIP=0
 if ($URLIP -eq $PCIP){Write-Host "The results are consistent, skip the update`r";$SKIP=1}
 }
 $null =UPDNS;
-if ($UPTIME -gt 0){Write-Host "The next check will be after $UPTIME<s>`r";Sleep $UPTIME};
+if ($UPTIME -gt 0){Write-Host "The next check will be after $UPTIME<s>`r";Start-Sleep $UPTIME};
 }
 while($UPTIME -gt 0)
