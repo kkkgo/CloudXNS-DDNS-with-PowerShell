@@ -1,6 +1,6 @@
 #CloudXNS-DDNS with PowerShell
-#Github项目地址：https://github.com/lixuy/CloudXNS-DDNS-with-PowerShell
-#更多信息： https://03k.org/cloudxns-ddns-with-powershell.html 
+#Github项目地址:https://github.com/lixuy/CloudXNS-DDNS-with-PowerShell
+#更多信息: https://03k.org/cloudxns-ddns-with-powershell.html
 $API_KEY="abcdefghijklmnopqrstuvwxyz1234567"
 $SECRET_KEY="abcdefghijk12345"
 #[必填]请在上方填写你的CLoudXNS的API KEY和SECRET KEY.
@@ -63,11 +63,11 @@ $null=$URLIP.DownloadString($CHECKURI) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1
 $URLIP=$matches[0]
 $PCIP=$(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
 $PCIP=$matches[0]
-Write-Host "本地解析结果：$PCIP`r`n网址获取结果：$URLIP`r"
+Write-Host "本地解析结果:$PCIP`r`n网址获取结果:$URLIP`r"
 $SKIP=0
 if ($URLIP -eq $PCIP){Write-Host "结果一致，跳过更新`r";$SKIP=1}
 }
 $null =UPDNS;
-if ($UPTIME -gt 0){Write-Host "下次检查将在$UPTIME<s>之后`r";Sleep $UPTIME};
+if ($UPTIME -gt 0){Write-Host "下次检查将在$UPTIME<s>之后`r";Start-Sleep $UPTIME};
 }
 while($UPTIME -gt 0)
