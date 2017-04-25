@@ -1,6 +1,6 @@
 #CloudXNS-DDNS with PowerShell
 #Github: https://github.com/lixuy/CloudXNS-DDNS-with-PowerShell
-#More: https://03k.org/cloudxns-ddns-with-powershell.html ‎
+#More: https://03k.org/cloudxns-ddns-with-powershell.html
 $API_KEY="abcdefghijklmnopqrstuvwxyz1234567"
 $SECRET_KEY="abcdefghijk12345"
 #[Required]Please fill in your API KEY and SECRET KEY.
@@ -65,7 +65,7 @@ $null=$URLIP.DownloadString($CHECKURI) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1
 $URLIP=$matches[0]
 $PCIP=$(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
 $PCIP=$matches[0]
-Write-Host "Local resolution results：$PCIP`r`nThe result from the URL：$URLIP`r"
+Write-Host "Local resolution results:$PCIP`r`nThe result from the URL:$URLIP`r"
 $SKIP=0
 if ($URLIP -eq $PCIP){Write-Host "The results are consistent, skip the update`r";$SKIP=1}
 }
