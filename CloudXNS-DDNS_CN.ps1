@@ -11,10 +11,9 @@ $UPTIME=59
 #[可选]检查更新的时间间隔（秒）
 #API调用有频率限制，不建议设置过短间隔
 #如果不需要循环检查更新（比如手动添加计划任务），请注释或填-1
-$CHECKURI="http://myip.ipip.net/"
+$CHECKURL="http://myip.ipip.net/"
 #[可选]用于检查外网ip是否更新过的网址，减少API调用频率
 #注释或填-1将不检查是否已经更新，直接提交ip更新请求
-#支持以 http:,https:,ftp:,和 file:标识符开头的URI
 #$LOGFILE="./ddns.log"
 #[可选]用于记录日志的文件路径*.log,注释掉将不保存日志
 #配置结束
@@ -59,7 +58,7 @@ Write-Host "$(Get-date)`r"
 if ($CHECKURI -match "^*://"){
 $URLIP=new-object System.Net.WebClient
 $URLIP.Encoding=[System.Text.Encoding]::UTF8
-if($($URLIP.DownloadString($CHECKURI) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"))
+if($($URLIP.DownloadString($CHECKURL) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"))
 {$URLIP=$matches[0]}
 else{$URLIP="无法获取结果,请检查网络,防火墙和CHECKURI参数`r"}
 if($(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")
