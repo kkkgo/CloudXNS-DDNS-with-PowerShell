@@ -14,7 +14,7 @@ $UPTIME=59
 $CHECKURI="http://myip.ipip.net/"
 #[可选]用于检查外网ip是否更新过的网址，减少API调用频率
 #注释或填-1将不检查是否已经更新，直接提交ip更新请求
-#支持以 http:、https:、ftp:、和 file:标识符开头的URI
+#支持以 http:,https:,ftp:,和 file:标识符开头的URI
 #$LOGFILE="./ddns.log"
 #[可选]用于记录日志的文件路径*.log,注释掉将不保存日志
 #配置结束
