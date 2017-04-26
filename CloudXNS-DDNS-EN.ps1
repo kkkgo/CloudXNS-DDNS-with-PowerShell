@@ -61,10 +61,12 @@ Write-Host "$(Get-date)`r"
 if ($CHECKURI -match "^*://"){
 $URLIP=new-object System.Net.WebClient
 $URLIP.Encoding=[System.Text.Encoding]::UTF8
-$null=$URLIP.DownloadString($CHECKURI) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
-$URLIP=$matches[0]
-$PCIP=$(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
-$PCIP=$matches[0]
+if($($URLIP.DownloadString($CHECKURI) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"))
+{$URLIP=$matches[0]}
+else{$URLIP="Can not get results, check the network, firewall, and CHECKURI parameters`r"}
+if($(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")
+{$PCIP=$matches[0]}
+else{$PCIP="Can not get the results, please check the network, firewall and DDNS parameters, domain name records in the background`r"}
 Write-Host "Local resolution results:$PCIP`r`nThe result from the URL:$URLIP`r"
 $SKIP=0
 if ($URLIP -eq $PCIP){Write-Host "The results are consistent, skip the update`r";$SKIP=1}
