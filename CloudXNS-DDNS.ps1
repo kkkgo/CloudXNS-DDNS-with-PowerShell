@@ -59,10 +59,12 @@ Write-Host "$(Get-date)`r"
 if ($CHECKURI -match "^*://"){
 $URLIP=new-object System.Net.WebClient
 $URLIP.Encoding=[System.Text.Encoding]::UTF8
-$null=$URLIP.DownloadString($CHECKURI) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
-$URLIP=$matches[0]
-$PCIP=$(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
-$PCIP=$matches[0]
+if($($URLIP.DownloadString($CHECKURI) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"))
+{$URLIP=$matches[0]}
+else{$URLIP="无法获取结果,请检查网络和CHECKURI参数`r"}
+if($(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")
+{$PCIP=$matches[0]}
+else{$PCIP="无法获取结果,请检查网络和DDNS参数,域名记录在后台是否存在`r"}
 Write-Host "本地解析结果:$PCIP`r`n网址获取结果:$URLIP`r"
 $SKIP=0
 if ($URLIP -eq $PCIP){Write-Host "结果一致，跳过更新`r";$SKIP=1}
