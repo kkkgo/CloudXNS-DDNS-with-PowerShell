@@ -12,7 +12,7 @@ $UPTIME=59
 #API has a frequency limit, it is not recommended to set too short a time interval.
 #If you do not need to check for updates (such as manually adding scheduled tasks),
 #please comment this line of code
-$CHECKURI="http://ip.3322.org"
+$CHECKURI="http://myip.ipip.net/"
 #[Optional]Used to obtain the public network ip address, reduce the API call frequency.
 #Comment this line of code will submit the ip update request directly.
 #Supports URIs that begin with http:, https:, ftp :, and file: identifiers.
