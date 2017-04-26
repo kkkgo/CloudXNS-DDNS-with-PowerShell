@@ -12,10 +12,9 @@ $UPTIME=59
 #API has a frequency limit, it is not recommended to set too short a time interval.
 #If you do not need to check for updates (such as manually adding scheduled tasks),
 #please comment this line of code
-$CHECKURI="http://myip.ipip.net/"
+$CHECKURL="http://myip.ipip.net/"
 #[Optional]Used to obtain the public network ip address, reduce the API call frequency.
 #Comment this line of code will submit the ip update request directly.
-#Supports URIs that begin with http:, https:, ftp :, and file: identifiers.
 #$LOGFILE="./ddns.log"
 #[Optional]The file path used to record the log * .log, 
 #commented this line of code will not save the log.
@@ -61,7 +60,7 @@ Write-Host "$(Get-date)`r"
 if ($CHECKURI -match "^*://"){
 $URLIP=new-object System.Net.WebClient
 $URLIP.Encoding=[System.Text.Encoding]::UTF8
-if($($URLIP.DownloadString($CHECKURI) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"))
+if($($URLIP.DownloadString($CHECKURL) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"))
 {$URLIP=$matches[0]}
 else{$URLIP="Can not get results, check the network, firewall, and CHECKURI parameters`r"}
 if($(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")
