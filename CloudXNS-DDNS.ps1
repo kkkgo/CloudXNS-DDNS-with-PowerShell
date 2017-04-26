@@ -48,7 +48,7 @@ if ($Respond){Write-Host $Respond}
 if ($LOGFILE -match "\.log$"){
 $null =stop-transcript;
 Clear-Host
-Write-Host "CloudXNS-DDNS with PowerShell"
+
 start-transcript -append -path $LOGFILE}
 if (-not(
 -join($API_KEY,$API_KEY.Length) -match "^[0-9a-z]{32}32$" -and`
