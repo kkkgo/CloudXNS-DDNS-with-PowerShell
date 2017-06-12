@@ -53,12 +53,12 @@ if (-not(
 )){Write-Warning "你的API KEY配置可能有误，请检查你的配置。";read-host;exit}
 do {
 Write-Host "$(Get-date)`r"
-if ($CHECKURI -match "^*://"){
+if ($CHECKURL -match "^*://"){
 $URLIP=new-object System.Net.WebClient
 $URLIP.Encoding=[System.Text.Encoding]::UTF8
 if($($URLIP.DownloadString($CHECKURL) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"))
 {$URLIP=$matches[0]}
-else{$URLIP="无法获取结果,请检查网络,防火墙和CHECKURI参数`r"}
+else{$URLIP="无法获取结果,请检查网络,防火墙和CHECKURL参数`r"}
 if($(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")
 {$PCIP=$matches[0]}
 else{$PCIP="无法获取结果,请检查网络,防火墙和DDNS参数,域名记录在后台是否存在`r"}

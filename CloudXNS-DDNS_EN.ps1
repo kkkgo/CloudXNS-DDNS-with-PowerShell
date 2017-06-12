@@ -56,18 +56,18 @@ if (-not(
 )){Write-Warning "Your API KEY configuration may be incorrect, please check your configuration.";read-host;exit}
 do {
 Write-Host "$(Get-date)`r"
-if ($CHECKURI -match "^*://"){
+if ($CHECKURL -match "^*://"){
 $URLIP=new-object System.Net.WebClient
 $URLIP.Encoding=[System.Text.Encoding]::UTF8
 if($($URLIP.DownloadString($CHECKURL) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"))
 {$URLIP=$matches[0]}
-else{$URLIP="Can not get results, check the network, firewall, and CHECKURI parameters`r"}
+else{$URLIP="Can not get results, check the network, firewall, and CHECKURL parameters`r"}
 if($(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")
 {$PCIP=$matches[0]}
 else{$PCIP="Can not get the results, please check the network, firewall and DDNS parameters, domain name records in the background`r"}
 Write-Host "[Local Results]:$PCIP`r`n[URL Results]:$URLIP`r"
 $SKIP=0
-if ($URLIP -eq $PCIP){Write-Host "The results are consistent, skip the update`r";$SKIP=1}
+if ($URLIP -eq $PCIP){Write-Host "The results are same, skip the update`r";$SKIP=1}
 }
 $null =UPDNS;
 if ($UPTIME -gt 0){Write-Host "The next check will be after $UPTIME<s>`r";Start-Sleep $UPTIME};
