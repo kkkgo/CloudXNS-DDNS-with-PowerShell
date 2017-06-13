@@ -1,22 +1,22 @@
 #CloudXNS-DDNS with PowerShell
-#Githubé¡¹ç›®åœ°å€:https://github.com/lixuy/CloudXNS-DDNS-with-PowerShell
-#æ›´å¤šä¿¡æ¯: https://03k.org/cloudxns-ddns-with-powershell.html
+#GithubÏîÄ¿µØÖ·:https://github.com/lixuy/CloudXNS-DDNS-with-PowerShell
+#¸ü¶àĞÅÏ¢: https://03k.org/cloudxns-ddns-with-powershell.html
 $API_KEY="abcdefghijklmnopqrstuvwxyz1234567"
 $SECRET_KEY="abcdefghijk12345"
-#[å¿…å¡«]è¯·åœ¨ä¸Šæ–¹å¡«å†™ä½ çš„CLoudXNSçš„API KEYå’ŒSECRET KEY.
+#[±ØÌî]ÇëÔÚÉÏ·½ÌîĞ´ÄãµÄCLoudXNSµÄAPI KEYºÍSECRET KEY.
 $DDNS="home.xxxx.com"
-#[å¿…å¡«]è¯·åœ¨ä¸Šæ–¹å¡«å†™ä½ çš„åŸŸåï¼Œæ¯”å¦‚myhome.xxx.com
-#è¯·ç¡®ä¿æ‰€å¡«åŸŸååœ¨è´¦å·å†…å­˜åœ¨ï¼Œå¦åˆ™ä¼šè¿”å›40xé”™è¯¯
+#[±ØÌî]ÇëÔÚÉÏ·½ÌîĞ´ÄãµÄÓòÃû£¬±ÈÈçmyhome.xxx.com
+#ÇëÈ·±£ËùÌîÓòÃûÔÚÕËºÅÄÚ´æÔÚ£¬·ñÔò»á·µ»Ø40x´íÎó
 $UPTIME=59
-#[å¯é€‰]æ£€æŸ¥æ›´æ–°çš„æ—¶é—´é—´éš”ï¼ˆç§’ï¼‰
-#APIè°ƒç”¨æœ‰é¢‘ç‡é™åˆ¶ï¼Œä¸å»ºè®®è®¾ç½®è¿‡çŸ­é—´éš”
-#å¦‚æœä¸éœ€è¦å¾ªç¯æ£€æŸ¥æ›´æ–°ï¼ˆæ¯”å¦‚æ‰‹åŠ¨æ·»åŠ è®¡åˆ’ä»»åŠ¡ï¼‰ï¼Œè¯·æ³¨é‡Šæˆ–å¡«-1
+#[¿ÉÑ¡]¼ì²é¸üĞÂµÄÊ±¼ä¼ä¸ô£¨Ãë£©
+#APIµ÷ÓÃÓĞÆµÂÊÏŞÖÆ£¬²»½¨ÒéÉèÖÃ¹ı¶Ì¼ä¸ô
+#Èç¹û²»ĞèÒªÑ­»·¼ì²é¸üĞÂ£¨±ÈÈçÊÖ¶¯Ìí¼Ó¼Æ»®ÈÎÎñ£©£¬Çë×¢ÊÍ»òÌî-1
 $CHECKURL="http://myip.ipip.net/"
-#[å¯é€‰]ç”¨äºæ£€æŸ¥å¤–ç½‘ipæ˜¯å¦æ›´æ–°è¿‡çš„ç½‘å€ï¼Œå‡å°‘APIè°ƒç”¨é¢‘ç‡
-#æ³¨é‡Šæˆ–å¡«-1å°†ä¸æ£€æŸ¥æ˜¯å¦å·²ç»æ›´æ–°ï¼Œç›´æ¥æäº¤ipæ›´æ–°è¯·æ±‚
+#[¿ÉÑ¡]ÓÃÓÚ¼ì²éÍâÍøipÊÇ·ñ¸üĞÂ¹ıµÄÍøÖ·£¬¼õÉÙAPIµ÷ÓÃÆµÂÊ
+#×¢ÊÍ»òÌî-1½«²»¼ì²éÊÇ·ñÒÑ¾­¸üĞÂ£¬Ö±½ÓÌá½»ip¸üĞÂÇëÇó
 #$LOGFILE="./ddns.log"
-#[å¯é€‰]ç”¨äºè®°å½•æ—¥å¿—çš„æ–‡ä»¶è·¯å¾„*.log,æ³¨é‡Šæ‰å°†ä¸ä¿å­˜æ—¥å¿—
-#é…ç½®ç»“æŸ
+#[¿ÉÑ¡]ÓÃÓÚ¼ÇÂ¼ÈÕÖ¾µÄÎÄ¼şÂ·¾¶*.log,×¢ÊÍµô½«²»±£´æÈÕÖ¾
+#ÅäÖÃ½áÊø
 $URL="http://www.cloudxns.net/api2/ddns"
 $JSON = @"
   {"domain":"$DDNS"}
@@ -37,9 +37,9 @@ $POST.Headers.Add("HttpRequestHeader.Accept", "json");
 $POST.Headers.Add("HttpRequestHeader.ContentType","application/x-www-form-urlencoded; charset=UTF-8");
 $Respond=$POST.UploadString($URL,"POST", $JSON);
 if ($Respond -match "success"){
-Write-Host "è°ƒç”¨APIæ›´æ–°DNSæˆåŠŸ`r"}
+Write-Host "µ÷ÓÃAPI¸üĞÂDNS³É¹¦`r"}
 else {
-Write-Host "è°ƒç”¨APIæ›´æ–°DNSå‡ºé”™`r"
+Write-Host "µ÷ÓÃAPI¸üĞÂDNS³ö´í`r"
 if ($Respond){Write-Host $Respond}
 }}
 
@@ -50,7 +50,7 @@ start-transcript -append -path $LOGFILE}
 if (-not(
 -join($API_KEY,$API_KEY.Length) -match "^[0-9a-z]{32}32$" -and`
 -join($SECRET_KEY,$SECRET_KEY.Length) -match "^[0-9a-z]{16}16$"
-)){Write-Warning "ä½ çš„API KEYé…ç½®å¯èƒ½æœ‰è¯¯ï¼Œè¯·æ£€æŸ¥ä½ çš„é…ç½®ã€‚";read-host;exit}
+)){Write-Warning "ÄãµÄAPI KEYÅäÖÃ¿ÉÄÜÓĞÎó£¬Çë¼ì²éÄãµÄÅäÖÃ¡£";read-host;exit}
 do {
 Write-Host "$(Get-date)`r"
 if ($CHECKURL -match "^*://"){
@@ -58,15 +58,15 @@ $URLIP=new-object System.Net.WebClient
 $URLIP.Encoding=[System.Text.Encoding]::UTF8
 if($($URLIP.DownloadString($CHECKURL) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"))
 {$URLIP=$matches[0]}
-else{$URLIP="æ— æ³•è·å–ç»“æœ,è¯·æ£€æŸ¥ç½‘ç»œ,é˜²ç«å¢™å’ŒCHECKURLå‚æ•°`r"}
+else{$URLIP="ÎŞ·¨»ñÈ¡½á¹û,Çë¼ì²éÍøÂç,·À»ğÇ½ºÍCHECKURL²ÎÊı`r"}
 if($(([Net.DNS]::GetHostEntry($DDNS).AddressList|Where-Object -FilterScript {$_.AddressFamily -eq "InterNetwork"}).IPAddressToString|Out-String) -match "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")
 {$PCIP=$matches[0]}
-else{$PCIP="æ— æ³•è·å–ç»“æœ,è¯·æ£€æŸ¥ç½‘ç»œ,é˜²ç«å¢™å’ŒDDNSå‚æ•°,åŸŸåè®°å½•åœ¨åå°æ˜¯å¦å­˜åœ¨`r"}
-Write-Host "æœ¬åœ°è§£æç»“æœ:$PCIP`r`nç½‘å€è·å–ç»“æœ:$URLIP`r"
+else{$PCIP="ÎŞ·¨»ñÈ¡½á¹û,Çë¼ì²éÍøÂç,·À»ğÇ½ºÍDDNS²ÎÊı,ÓòÃû¼ÇÂ¼ÔÚºóÌ¨ÊÇ·ñ´æÔÚ`r"}
+Write-Host "±¾µØ½âÎö½á¹û:$PCIP`r`nÍøÖ·»ñÈ¡½á¹û:$URLIP`r"
 $SKIP=0
-if ($URLIP -eq $PCIP){Write-Host "ç»“æœä¸€è‡´ï¼Œè·³è¿‡æ›´æ–°`r";$SKIP=1}
+if ($URLIP -eq $PCIP){Write-Host "½á¹ûÒ»ÖÂ£¬Ìø¹ı¸üĞÂ`r";$SKIP=1}
 }
 $null =UPDNS;
-if ($UPTIME -gt 0){Write-Host "ä¸‹æ¬¡æ£€æŸ¥å°†åœ¨$UPTIME<s>ä¹‹å`r";Start-Sleep $UPTIME};
+if ($UPTIME -gt 0){Write-Host "ÏÂ´Î¼ì²é½«ÔÚ$UPTIME<s>Ö®ºó`r";Start-Sleep $UPTIME};
 }
 while($UPTIME -gt 0)
