@@ -53,7 +53,7 @@ start-transcript -append -path $LOGFILE}
 if (-not(
 -join($API_KEY,$API_KEY.Length) -match "^[0-9a-z]{32}32$" -and`
 -join($SECRET_KEY,$SECRET_KEY.Length) -match "^[0-9a-z]{16}16$"
-)){Write-Warning "Your API KEY configuration may be incorrect, please check your configuration.";read-host;exit}
+)){Write-Warning "Your API KEY configuration error, please check your configuration.";read-host;exit}
 do {
 Write-Host "$(Get-date)`r"
 if ($CHECKURL -match "^*://"){
