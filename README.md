@@ -8,4 +8,6 @@ The CloudXNS DDNS with PowerShell
 
 如果你是linux用户，可以使用我的shell版本：https://github.com/lixuy/CloudXNS-DDNS-with-BashShell  
 
+建议点watch，以便我发现了有错误可以通知你:)  
+
 （使用说明有空再填坑
